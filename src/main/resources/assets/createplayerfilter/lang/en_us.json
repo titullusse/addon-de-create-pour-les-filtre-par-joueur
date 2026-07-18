@@ -5,6 +5,13 @@
   "createplayerfilter.command.tag.success": "Item tagged to owner: %s",
   "createplayerfilter.command.tag.no_item": "You must hold an item!",
   "createplayerfilter.command.untag.success": "Owner tag removed",
+  "createplayerfilter.command.bind.not_filter": "You must hold a Player Owner Filter!",
+  "createplayerfilter.filter.bound": "Filter bound to %s",
+  "createplayerfilter.filter.unbound": "Filter unbound",
+  "createplayerfilter.tooltip.owner": "Owner: %s",
+  "createplayerfilter.tooltip.unbound": "Right-click: bind to yourself · Sneak + right-click: unbind",
   "createplayerfilter.chest.access_denied": "This chest is not yours!",
-  "createplayerfilter.filter.description": "Filters items by owner (UUID)"
+  "createplayerfilter.filter.description": "Filters items by owner (UUID)",
+  "create.item_attributes.createplayerfilter_owned_by": "owned by %1$s",
+  "create.item_attributes.createplayerfilter_owned_by.inverted": "not owned by %1$s"
 }

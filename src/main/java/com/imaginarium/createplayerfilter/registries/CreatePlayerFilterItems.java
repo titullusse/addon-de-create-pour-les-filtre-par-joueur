@@ -7,14 +7,15 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import com.imaginarium.createplayerfilter.CreatePlayerFilterMod;
+import com.imaginarium.createplayerfilter.items.PlayerOwnerFilterItem;
 
 public class CreatePlayerFilterItems {
     public static final DeferredRegister.Items ITEMS =
             DeferredRegister.createItems(CreatePlayerFilterMod.MODID);
 
-    // Item du filtre joueur
+    // Item du filtre joueur (liable par clic droit ou /cpf bind)
     public static final DeferredItem<Item> PLAYER_OWNER_FILTER = ITEMS.register("player_owner_filter",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new PlayerOwnerFilterItem(new Item.Properties().stacksTo(1)));
 
     // BlockItem du coffre de tri (sinon le bloc est inobtenable en jeu)
     public static final DeferredItem<BlockItem> PLAYER_SORTING_CHEST =

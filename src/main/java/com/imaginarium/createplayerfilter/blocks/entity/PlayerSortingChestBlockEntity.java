@@ -91,6 +91,16 @@ public class PlayerSortingChestBlockEntity extends ChestBlockEntity {
         return canAcceptItem(stack);
     }
 
+    /**
+     * Vérifié par les hoppers vanilla lors de l'insertion automatique :
+     * seuls les items appartenant au propriétaire du coffre sont acceptés.
+     * (L'insertion manuelle par le propriétaire via l'interface reste libre.)
+     */
+    @Override
+    public boolean canPlaceItem(int slot, ItemStack stack) {
+        return canAcceptItem(stack);
+    }
+
     @Override
     protected Component getDefaultName() {
         return Component.translatable("block.createplayerfilter.player_sorting_chest");

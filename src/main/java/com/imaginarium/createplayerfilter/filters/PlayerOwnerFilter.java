@@ -1,5 +1,6 @@
 package com.imaginarium.createplayerfilter.filters;
 
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 import com.imaginarium.createplayerfilter.data.OwnerData;
@@ -46,7 +47,15 @@ public class PlayerOwnerFilter {
     }
 
     /**
-     * Helper pour ajouter le composant owner à un item.
+     * Helper pour ajouter le composant owner à un item (nom du joueur mis en cache pour l'affichage).
+     */
+    public static void tagItemWithOwner(ItemStack stack, Player owner) {
+        stack.set(CreatePlayerFilterDataComponents.OWNER.get(),
+                new OwnerData(owner.getUUID(), owner.getGameProfile().getName()));
+    }
+
+    /**
+     * Helper pour ajouter le composant owner à un item à partir d'un UUID seul.
      */
     public static void tagItemWithOwner(ItemStack stack, UUID owner) {
         stack.set(CreatePlayerFilterDataComponents.OWNER.get(), new OwnerData(owner));
@@ -66,6 +75,14 @@ public class PlayerOwnerFilter {
     public static UUID getItemOwner(ItemStack stack) {
         OwnerData data = stack.get(CreatePlayerFilterDataComponents.OWNER.get());
         return data != null ? data.owner() : null;
+    }
+
+    /**
+     * Récupère le composant owner complet d'un item (ou null).
+     */
+    @Nullable
+    public static OwnerData getOwnerData(ItemStack stack) {
+        return stack.get(CreatePlayerFilterDataComponents.OWNER.get());
     }
 
     /**

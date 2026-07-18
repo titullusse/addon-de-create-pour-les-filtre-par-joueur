@@ -16,8 +16,8 @@ java {
 
 repositories {
     mavenCentral()
-    // Maven de Create (décommenter pour compiler contre l'API de Create)
-    // maven { url = 'https://maven.createmod.net' }
+    // Maven de Create
+    maven { url = 'https://maven.createmod.net' }
 }
 
 neoForge {
@@ -40,8 +40,11 @@ neoForge {
 }
 
 dependencies {
-    // Create 6.x pour NeoForge 1.21.1 (optionnel : le mod n'en dépend pas à la compilation)
-    // compileOnly "com.simibubi.create:create-1.21.1:6.0.4-33:slim"
+    // Create 6.x pour NeoForge 1.21.1 — compileOnly : le mod reste fonctionnel sans Create,
+    // l'intégration (attribut de filtre "appartient à") ne s'active que si Create est présent
+    compileOnly("com.simibubi.create:create-1.21.1:${project.create_version}") {
+        transitive = false
+    }
 }
 
 tasks.named('jar', Jar) {

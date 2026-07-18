@@ -4,12 +4,18 @@ Addon Minecraft **NeoForge 1.21.1** pour trier et distribuer les items **par jou
 
 ## Fonctionnalités
 
-- **Filtre Propriétaire Joueur** (`player_owner_filter`) : item filtre basé sur l'UUID d'un joueur.
-- **Coffre de Tri Joueur** (`player_sorting_chest`) : coffre qui n'accepte que les items de son propriétaire et ne s'ouvre que pour lui.
-- **Data component `createplayerfilter:owner`** : remplace l'ancien tag NBT (supprimé depuis Minecraft 1.20.5) pour marquer le propriétaire d'un item.
+- **Filtre Propriétaire Joueur** (`player_owner_filter`) : item filtre liable à un joueur.
+  - Clic droit : se lie à vous · Accroupi + clic droit : se délie · Clic droit sur un joueur : se lie à lui
+  - Le tooltip affiche le joueur lié
+- **Coffre de Tri Joueur** (`player_sorting_chest`) :
+  - Ne s'ouvre que pour son propriétaire (celui qui l'a posé)
+  - Les insertions automatiques (hoppers, tunnels/bras/goulottes Create, pipes moddés) sont **filtrées** : seuls les items appartenant au propriétaire entrent
+- **Intégration Create** (si Create 6.x est installé) : les items tagués exposent un attribut **« appartient à &lt;joueur&gt; »** sélectionnable dans les attribute filters de Create (tunnels de laiton, smart chutes, bras mécaniques, déployeurs...).
+- **Data component `createplayerfilter:owner`** : remplace l'ancien tag NBT (supprimé depuis Minecraft 1.20.5) ; stocke l'UUID + le nom du joueur. Tout item tagué affiche « Propriétaire : X » dans son tooltip.
 - **Commandes** :
-  - `/cpf tag <joueur>` — tague l'item tenu en main avec l'UUID du joueur ciblé
+  - `/cpf tag <joueur>` — tague n'importe quel item tenu en main avec le joueur ciblé
   - `/cpf untag` — retire le tag propriétaire de l'item tenu
+  - `/cpf bind <joueur>` — lie le Filtre Propriétaire Joueur tenu en main à un autre joueur
 
 ## Prérequis
 

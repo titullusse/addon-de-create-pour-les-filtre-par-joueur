@@ -2,9 +2,14 @@ package com.imaginarium.createplayerfilter;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
+import com.imaginarium.createplayerfilter.blocks.entity.FilteredInvWrapper;
+import com.imaginarium.createplayerfilter.compat.create.CreateIntegration;
 import com.imaginarium.createplayerfilter.registries.CreatePlayerFilterBlockEntities;
 import com.imaginarium.createplayerfilter.registries.CreatePlayerFilterBlocks;
 import com.imaginarium.createplayerfilter.registries.CreatePlayerFilterDataComponents;
@@ -25,6 +30,12 @@ public class CreatePlayerFilterMod {
         CreatePlayerFilterBlockEntities.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(this::registerCapabilities);
+
+        if (ModList.get().isLoaded("create")) {
+            CreateIntegration.init();
+            LOGGER.info("Create détecté : attribut de filtre \"appartient à\" enregistré");
+        }
 
         LOGGER.info("Create Player Filter initialized!");
     }
@@ -36,5 +47,13 @@ public class CreatePlayerFilterMod {
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             event.accept(CreatePlayerFilterItems.PLAYER_SORTING_CHEST.get());
         }
+    }
+
+    // Expose l'inventaire du coffre aux machines (Create, pipes...) avec filtrage par propriétaire
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                CreatePlayerFilterBlockEntities.PLAYER_SORTING_CHEST_ENTITY.get(),
+                (chest, side) -> new FilteredInvWrapper(chest));
     }
 }

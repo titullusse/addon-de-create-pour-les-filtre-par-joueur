@@ -13,6 +13,7 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 import com.imaginarium.createplayerfilter.CreatePlayerFilterMod;
 import com.imaginarium.createplayerfilter.filters.PlayerOwnerFilter;
+import com.imaginarium.createplayerfilter.items.PlayerOwnerFilterItem;
 
 @EventBusSubscriber(modid = CreatePlayerFilterMod.MODID)
 public class OwnerTagCommand {
@@ -41,10 +42,35 @@ public class OwnerTagCommand {
                                 return 0;
                             }
 
-                            // Tagger l'item avec l'UUID du joueur cible
-                            PlayerOwnerFilter.tagItemWithOwner(held, targetPlayer.getUUID());
+                            // Tagger l'item avec l'UUID (et le nom) du joueur cible
+                            PlayerOwnerFilter.tagItemWithOwner(held, targetPlayer);
                             source.sendSuccess(() -> Component.translatable(
                                     "createplayerfilter.command.tag.success", targetPlayer.getName()), true);
+                            return 1;
+                        })
+                    )
+                )
+                .then(Commands.literal("bind")
+                    .then(Commands.argument("player", EntityArgument.player())
+                        .executes(ctx -> {
+                            CommandSourceStack source = ctx.getSource();
+                            ServerPlayer targetPlayer = EntityArgument.getPlayer(ctx, "player");
+                            ServerPlayer executor = source.getPlayer();
+
+                            if (executor == null) {
+                                source.sendFailure(Component.translatable("createplayerfilter.command.player_only"));
+                                return 0;
+                            }
+
+                            ItemStack held = executor.getMainHandItem();
+                            if (!(held.getItem() instanceof PlayerOwnerFilterItem)) {
+                                source.sendFailure(Component.translatable("createplayerfilter.command.bind.not_filter"));
+                                return 0;
+                            }
+
+                            PlayerOwnerFilter.tagItemWithOwner(held, targetPlayer);
+                            source.sendSuccess(() -> Component.translatable(
+                                    "createplayerfilter.filter.bound", targetPlayer.getName()), true);
                             return 1;
                         })
                     )

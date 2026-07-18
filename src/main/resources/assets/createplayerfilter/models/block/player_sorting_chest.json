@@ -1,0 +1,23 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "minecraft:block/barrel_side",
+    "top": "minecraft:block/barrel_top",
+    "bottom": "minecraft:block/barrel_bottom",
+    "side": "minecraft:block/barrel_side"
+  },
+  "elements": [
+    {
+      "from": [1, 0, 1],
+      "to": [15, 14, 15],
+      "faces": {
+        "down": { "texture": "#bottom", "cullface": "down" },
+        "up": { "texture": "#top" },
+        "north": { "texture": "#side" },
+        "south": { "texture": "#side" },
+        "west": { "texture": "#side" },
+        "east": { "texture": "#side" }
+      }
+    }
+  ]
+}

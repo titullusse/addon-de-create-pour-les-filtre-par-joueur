@@ -1,0 +1,17 @@
+{
+  "block.createplayerfilter.player_sorting_chest": "Coffre de Tri Joueur",
+  "item.createplayerfilter.player_owner_filter": "Filtre Propriétaire Joueur",
+  "createplayerfilter.command.player_only": "Seul un joueur peut exécuter cette commande",
+  "createplayerfilter.command.tag.success": "Item tagué au propriétaire : %s",
+  "createplayerfilter.command.tag.no_item": "Vous devez tenir un item !",
+  "createplayerfilter.command.untag.success": "Tag propriétaire retiré",
+  "createplayerfilter.command.bind.not_filter": "Vous devez tenir un Filtre Propriétaire Joueur !",
+  "createplayerfilter.filter.bound": "Filtre lié à %s",
+  "createplayerfilter.filter.unbound": "Filtre délié",
+  "createplayerfilter.tooltip.owner": "Propriétaire : %s",
+  "createplayerfilter.tooltip.unbound": "Clic droit : se lier à soi · Accroupi + clic droit : délier",
+  "createplayerfilter.chest.access_denied": "Ce coffre n'est pas le vôtre !",
+  "createplayerfilter.filter.description": "Filtre les items par propriétaire (UUID)",
+  "create.item_attributes.createplayerfilter_owned_by": "appartient à %1$s",
+  "create.item_attributes.createplayerfilter_owned_by.inverted": "n'appartient pas à %1$s"
+}

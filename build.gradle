@@ -1,0 +1,61 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.142'
+}
+
+version = project.mod_version
+group = project.mod_group_id
+
+base {
+    archivesName = project.mod_id
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+}
+
+repositories {
+    mavenCentral()
+    // Maven de Create
+    maven { url = 'https://maven.createmod.net' }
+}
+
+neoForge {
+    version = project.neo_version
+
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+        }
+    }
+
+    mods {
+        "${project.mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+dependencies {
+    // Create 6.x pour NeoForge 1.21.1 — compileOnly : le mod reste fonctionnel sans Create,
+    // l'intégration (attribut de filtre "appartient à") ne s'active que si Create est présent
+    compileOnly("com.simibubi.create:create-1.21.1:${project.create_version}") {
+        transitive = false
+    }
+}
+
+tasks.named('jar', Jar) {
+    manifest {
+        attributes(
+                'Specification-Title'     : project.mod_name,
+                'Specification-Vendor'    : project.mod_authors,
+                'Specification-Version'   : '1',
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.version,
+                'Implementation-Vendor'   : project.mod_authors
+        )
+    }
+}

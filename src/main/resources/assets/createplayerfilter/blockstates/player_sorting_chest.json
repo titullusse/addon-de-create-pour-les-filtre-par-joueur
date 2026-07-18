@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "createplayerfilter:block/player_sorting_chest"
+    }
+  }
+}

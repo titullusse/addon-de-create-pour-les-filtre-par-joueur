@@ -1,0 +1,10 @@
+{
+  "block.createplayerfilter.player_sorting_chest": "Player Sorting Chest",
+  "item.createplayerfilter.player_owner_filter": "Player Owner Filter",
+  "createplayerfilter.command.player_only": "Only a player can run this command",
+  "createplayerfilter.command.tag.success": "Item tagged to owner: %s",
+  "createplayerfilter.command.tag.no_item": "You must hold an item!",
+  "createplayerfilter.command.untag.success": "Owner tag removed",
+  "createplayerfilter.chest.access_denied": "This chest is not yours!",
+  "createplayerfilter.filter.description": "Filters items by owner (UUID)"
+}

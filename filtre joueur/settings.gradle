@@ -1,3 +1,0 @@
-plugins {
-    id 'net.neoforged.gradle.root' version '7.0.80'
-}

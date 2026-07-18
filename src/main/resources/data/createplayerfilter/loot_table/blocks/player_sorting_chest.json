@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "createplayerfilter:blocks/player_sorting_chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "createplayerfilter:player_sorting_chest"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

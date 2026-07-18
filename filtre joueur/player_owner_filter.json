@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "createplayerfilter:item/player_owner_filter"
+  }
+}

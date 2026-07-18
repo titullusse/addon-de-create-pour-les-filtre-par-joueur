@@ -1,0 +1,41 @@
+modLoader="neoforgemod"
+loaderVersion="[1,)"
+license="MIT"
+issueTrackerURL="https://github.com/imaginarium/createplayerfilter/issues"
+
+[[mods]]
+modId="createplayerfilter"
+version="${file.jarVersion}"
+displayName="Create Player Filter"
+logoFile=""
+logoBlur=false
+description="""
+Un addon Create qui ajoute un filtre personnalisé pour trier/distribuer les items par joueur.
+
+Fonctionnalités:
+- Filtre par nom de joueur (UUID)
+- Stockage séparé par joueur
+- Compatible avec les déployeurs, brass tunnels et smart chutes
+- Système NBT tag pour identifier les propriétaires
+"""
+
+[[dependencies.createplayerfilter]]
+    modId="neoforge"
+    mandatory=true
+    versionRange="[1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.createplayerfilter]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.21.1,1.22)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.createplayerfilter]]
+    modId="create"
+    mandatory=true
+    versionRange="[0.5,)"
+    ordering="AFTER"
+    side="BOTH"

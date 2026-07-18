@@ -1,0 +1,9 @@
+{
+  "block.createplayerfilter.player_sorting_chest": "Coffre de Tri Joueur",
+  "item.createplayerfilter.player_owner_filter": "Filtre Propriétaire Joueur",
+  "createplayerfilter.command.tag.success": "Item tagué au propriétaire: %s",
+  "createplayerfilter.command.tag.no_item": "Vous devez tenir un item!",
+  "createplayerfilter.command.untag.success": "Tag propriétaire retiré",
+  "createplayerfilter.chest.access_denied": "Ce coffre n'est pas le vôtre!",
+  "createplayerfilter.filter.description": "Filtre les items par propriétaire (UUID)"
+}

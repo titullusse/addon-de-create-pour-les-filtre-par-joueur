@@ -7,7 +7,7 @@ Addon Minecraft **NeoForge 1.21.1** pour trier et distribuer les items **par jou
 - **Tag automatique au ramassage** : tout item ramassé au sol est tagué avec l'UUID du joueur qui le ramasse (les items déjà tagués gardent leur propriétaire ; le filtre n'est jamais auto-tagué).
 - **Réinitialisation au lâcher** : lâcher un item (touche Q) retire son tag propriétaire — n'importe qui peut alors le récupérer et le stocker dans son coffre perso. La liaison du filtre, elle, survit au lâcher.
 - **Tooltip discret** : la ligne « Propriétaire : X » ne s'affiche qu'avec les tooltips avancés (**F3+H**).
-- **Configuration** (`config/createplayerfilter-common.toml`) : `autoTagOnPickup` et `clearTagOnDrop` activables/désactivables.
+- **Configuration** (`config/createplayerfilter-common.toml`) : `autoTagOnPickup`, `clearTagOnDrop` et `clearTagOnDeath` (les items d'un mort libèrent leurs tags — désactivé par défaut : ils restent triés vers le coffre du défunt).
 - **Filtre Propriétaire Joueur** (`player_owner_filter`) : item filtre liable à un joueur.
   - Clic droit : se lie à vous · Accroupi + clic droit : se délie · Clic droit sur un joueur : se lie à lui
   - Le tooltip affiche le joueur lié

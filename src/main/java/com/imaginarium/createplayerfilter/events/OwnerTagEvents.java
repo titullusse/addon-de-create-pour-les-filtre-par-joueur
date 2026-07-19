@@ -2,9 +2,11 @@ package com.imaginarium.createplayerfilter.events;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 
 import com.imaginarium.createplayerfilter.CreatePlayerFilterMod;
@@ -56,5 +58,22 @@ public class OwnerTagEvents {
             return;
         }
         PlayerOwnerFilter.removeOwnerTag(stack);
+    }
+
+    /** À la mort d'un joueur, libère (optionnellement) les tags de ses drops. */
+    @SubscribeEvent
+    public static void onPlayerDrops(LivingDropsEvent event) {
+        if (!CreatePlayerFilterConfig.CLEAR_TAG_ON_DEATH.get()) {
+            return;
+        }
+        if (!(event.getEntity() instanceof Player) || event.getEntity().level().isClientSide) {
+            return;
+        }
+        for (ItemEntity drop : event.getDrops()) {
+            ItemStack stack = drop.getItem();
+            if (!stack.isEmpty() && !(stack.getItem() instanceof PlayerOwnerFilterItem)) {
+                PlayerOwnerFilter.removeOwnerTag(stack);
+            }
+        }
     }
 }

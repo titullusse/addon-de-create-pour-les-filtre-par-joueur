@@ -14,6 +14,9 @@ public class CreatePlayerFilterConfig {
     /** Retirer le tag propriétaire quand un joueur lâche un item. */
     public static final ModConfigSpec.BooleanValue CLEAR_TAG_ON_DROP;
 
+    /** Retirer le tag propriétaire des items lâchés à la mort d'un joueur. */
+    public static final ModConfigSpec.BooleanValue CLEAR_TAG_ON_DEATH;
+
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
 
@@ -29,6 +32,14 @@ public class CreatePlayerFilterConfig {
                         "pour que n'importe qui puisse le récupérer et le stocker dans son coffre perso.",
                         "Clear the owner tag when a player drops an item, so anyone can claim it.")
                 .define("clearTagOnDrop", true);
+
+        CLEAR_TAG_ON_DEATH = builder
+                .comment("Retirer le tag propriétaire des items lâchés à la mort d'un joueur.",
+                        "Si désactivé, les items d'un mort gardent leur propriétaire et le tri",
+                        "les renverra vers son coffre au lieu de les offrir au premier passant.",
+                        "Clear the owner tag on items dropped when a player dies.",
+                        "If disabled, a dead player's items keep their owner tag.")
+                .define("clearTagOnDeath", false);
 
         builder.pop();
 

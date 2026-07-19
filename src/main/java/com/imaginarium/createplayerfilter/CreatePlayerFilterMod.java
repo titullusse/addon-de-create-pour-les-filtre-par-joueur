@@ -33,8 +33,8 @@ public class CreatePlayerFilterMod {
         modEventBus.addListener(this::registerCapabilities);
 
         if (ModList.get().isLoaded("create")) {
-            CreateIntegration.init();
-            LOGGER.info("Create détecté : attribut de filtre \"appartient à\" enregistré");
+            CreateIntegration.register(modEventBus);
+            LOGGER.info("Create détecté : enregistrement de l'attribut de filtre \"appartient à\"");
         }
 
         LOGGER.info("Create Player Filter initialized!");

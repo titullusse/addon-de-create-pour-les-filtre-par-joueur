@@ -13,9 +13,9 @@ public class CreatePlayerFilterBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(CreatePlayerFilterMod.MODID);
 
-    // Coffre de tri par joueur
+    // Coffre de tri par joueur (apparence et sons de tonneau)
     public static final DeferredBlock<Block> PLAYER_SORTING_CHEST = BLOCKS.register("player_sorting_chest",
-            () -> new PlayerSortingChestBlock(Block.Properties.ofFullCopy(Blocks.CHEST)));
+            () -> new PlayerSortingChestBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
 
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);

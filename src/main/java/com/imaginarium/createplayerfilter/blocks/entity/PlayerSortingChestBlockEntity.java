@@ -7,6 +7,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
@@ -99,6 +102,29 @@ public class PlayerSortingChestBlockEntity extends ChestBlockEntity {
     @Override
     public boolean canPlaceItem(int slot, ItemStack stack) {
         return canAcceptItem(stack);
+    }
+
+    // --- Sons de tonneau ---
+    // On court-circuite le compteur d'ouvreurs de ChestBlockEntity (qui joue les
+    // sons de coffre et anime un couvercle que notre modèle n'a pas) pour jouer
+    // les sons du tonneau, cohérents avec l'apparence du bloc.
+
+    @Override
+    public void startOpen(Player player) {
+        playBarrelSound(player, SoundEvents.BARREL_OPEN);
+    }
+
+    @Override
+    public void stopOpen(Player player) {
+        playBarrelSound(player, SoundEvents.BARREL_CLOSE);
+    }
+
+    private void playBarrelSound(Player player, SoundEvent sound) {
+        if (this.level == null || this.remove || player.isSpectator()) {
+            return;
+        }
+        this.level.playSound(null, this.worldPosition, sound, SoundSource.BLOCKS,
+                0.5F, this.level.getRandom().nextFloat() * 0.1F + 0.9F);
     }
 
     @Override

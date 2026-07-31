@@ -16,9 +16,16 @@ import com.imaginarium.createplayerfilter.items.PlayerOwnerFilterItem;
 @EventBusSubscriber(modid = CreatePlayerFilterMod.MODID, value = Dist.CLIENT)
 public class ClientEvents {
 
-    /** Affiche "Propriétaire : X" sur tout item tagué (le filtre gère son propre tooltip). */
+    /**
+     * Affiche "Propriétaire : X" sur tout item tagué (le filtre gère son propre tooltip).
+     * Visible uniquement avec les tooltips avancés (F3+H) pour ne pas encombrer
+     * l'affichage maintenant que la plupart des items ramassés sont tagués.
+     */
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
+        if (!event.getFlags().isAdvanced()) {
+            return;
+        }
         ItemStack stack = event.getItemStack();
         if (stack.getItem() instanceof PlayerOwnerFilterItem) {
             return;

@@ -2,14 +2,17 @@ package com.imaginarium.createplayerfilter;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 import com.imaginarium.createplayerfilter.blocks.entity.FilteredInvWrapper;
 import com.imaginarium.createplayerfilter.compat.create.CreateIntegration;
+import com.imaginarium.createplayerfilter.config.CreatePlayerFilterConfig;
 import com.imaginarium.createplayerfilter.registries.CreatePlayerFilterBlockEntities;
 import com.imaginarium.createplayerfilter.registries.CreatePlayerFilterBlocks;
 import com.imaginarium.createplayerfilter.registries.CreatePlayerFilterDataComponents;
@@ -23,7 +26,9 @@ public class CreatePlayerFilterMod {
     public static final String MODID = "createplayerfilter";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public CreatePlayerFilterMod(IEventBus modEventBus) {
+    public CreatePlayerFilterMod(IEventBus modEventBus, ModContainer modContainer) {
+        modContainer.registerConfig(ModConfig.Type.COMMON, CreatePlayerFilterConfig.SPEC);
+
         CreatePlayerFilterDataComponents.register(modEventBus);
         CreatePlayerFilterBlocks.register(modEventBus);
         CreatePlayerFilterItems.register(modEventBus);
@@ -33,8 +38,8 @@ public class CreatePlayerFilterMod {
         modEventBus.addListener(this::registerCapabilities);
 
         if (ModList.get().isLoaded("create")) {
-            CreateIntegration.init();
-            LOGGER.info("Create détecté : attribut de filtre \"appartient à\" enregistré");
+            CreateIntegration.register(modEventBus);
+            LOGGER.info("Create détecté : enregistrement de l'attribut de filtre \"appartient à\"");
         }
 
         LOGGER.info("Create Player Filter initialized!");
